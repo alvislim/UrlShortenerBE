@@ -1,7 +1,7 @@
 const shortid = require("shortid");
 const utils = require("../utils");
 const Url = require("../models/Url");
-
+const httpResponse = require("../utils");
 module.exports = {
   healthCheck: (req, res) => {
     res.send("hi");
@@ -27,14 +27,25 @@ module.exports = {
           });
 
           await url.save();
-          res.json(url);
+          httpResponse.httpResponse(
+            res,
+            204,
+            true,
+            "Url has been shortened",
+            origUrl
+          );
         }
       } catch (err) {
-        console.log(err);
-        res.status(500).json("Server Error");
+        httpResponse.httpResponse(res, 500, false, "Server error", origUrl);
       }
     } else {
-      res.status(400).json("Invalid Original Url");
+      httpResponse.httpResponse(
+        res,
+        400,
+        false,
+        "Invalid Original Url",
+        origUrl
+      );
     }
   },
 };
