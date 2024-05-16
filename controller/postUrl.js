@@ -15,10 +15,16 @@ module.exports = {
       try {
         let url = await Url.findOne({ origUrl });
         if (url) {
-          res.json(url);
+          console.log("here1?");
+          httpResponse.httpResponse(
+            res,
+            200,
+            true,
+            "Url has been shortened",
+            url.shortUrl
+          );
         } else {
           const shortUrl = `${base}/${urlId}`;
-
           url = new Url({
             origUrl,
             shortUrl,
@@ -29,10 +35,10 @@ module.exports = {
           await url.save();
           httpResponse.httpResponse(
             res,
-            204,
+            200,
             true,
             "Url has been shortened",
-            origUrl
+            url.shortUrl
           );
         }
       } catch (err) {
