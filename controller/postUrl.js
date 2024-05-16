@@ -15,14 +15,10 @@ module.exports = {
       try {
         let url = await Url.findOne({ origUrl });
         if (url) {
-          console.log("here1?");
-          httpResponse.httpResponse(
-            res,
-            200,
-            true,
-            "Url has been shortened",
-            url.shortUrl
-          );
+          httpResponse.httpResponse(res, 200, true, "Url has been shortened", {
+            short: url.shortUrl,
+            long: origUrl,
+          });
         } else {
           const shortUrl = `${base}/${urlId}`;
           url = new Url({
@@ -33,13 +29,10 @@ module.exports = {
           });
 
           await url.save();
-          httpResponse.httpResponse(
-            res,
-            200,
-            true,
-            "Url has been shortened",
-            url.shortUrl
-          );
+          httpResponse.httpResponse(res, 200, true, "Url has been shortened", {
+            short: url.shortUrl,
+            long: origUrl,
+          });
         }
       } catch (err) {
         httpResponse.httpResponse(res, 500, false, "Server error", origUrl);
