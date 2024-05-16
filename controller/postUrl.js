@@ -7,9 +7,8 @@ module.exports = {
     res.send("hi");
   },
   postUrl: async (req, res) => {
-    console.log("HERE", req.body.url);
     const { origUrl } = req.body;
-    const base = `http://localhost:3333`;
+    const base = `shortUrl`;
 
     const urlId = shortid.generate();
     if (utils.validateUrl(origUrl)) {

@@ -14,8 +14,8 @@ const db = require("./db");
 
 db.connect();
 
-const asdasdas = require("./router/index");
-app.use(asdasdas);
+const router = require("./router/index");
+app.use(router);
 
 // Server Setup
 const PORT = process.env.PORT || 3333;
