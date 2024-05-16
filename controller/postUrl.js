@@ -7,7 +7,7 @@ module.exports = {
     res.send("hi");
   },
   postUrl: async (req, res) => {
-    const { origUrl } = req.body;
+    let { origUrl } = req.body;
     const base = `shortUrl`;
 
     const urlId = shortid.generate();
@@ -18,6 +18,7 @@ module.exports = {
           res.json(url);
         } else {
           const shortUrl = `${base}/${urlId}`;
+          origUrl = `https://${origUrl}`;
 
           url = new Url({
             origUrl,
