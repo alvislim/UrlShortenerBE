@@ -8,7 +8,7 @@ module.exports = {
   },
   postUrl: async (req, res) => {
     const { origUrl } = req.body;
-    const base = `shortUrl`;
+    const base = process.env.DOMAIN_URL;
 
     const urlId = shortid.generate();
     if (utils.validateUrl(origUrl)) {
