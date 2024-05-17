@@ -35,14 +35,14 @@ module.exports = {
           });
         }
       } catch (err) {
-        httpResponse.httpResponse(res, 500, false, "Server error", origUrl);
+        httpResponse.httpResponse(res, 500, false, "Server Error", origUrl);
       }
     } else {
       httpResponse.httpResponse(
         res,
         400,
         false,
-        "Invalid Original Url",
+        "An error occurred creating the short URL; please check input",
         origUrl
       );
     }

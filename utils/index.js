@@ -17,6 +17,7 @@ const httpResponse = (res, statusCode, success, message, payload) => {
     success: success,
     message: message,
     payload: payload,
+    code: statusCode,
   });
 };
 
